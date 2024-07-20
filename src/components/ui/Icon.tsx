@@ -6,10 +6,11 @@ export type TypeIconName = keyof typeof Icons;
 interface IIcon {
   name: TypeIconName;
   className?: string;
+  color?: string;
 }
 
-export const Icon: FC<IIcon> = ({ name, className }) => {
+export const Icon: FC<IIcon> = ({ name, className,color }) => {
   const IconComponent = Icons[name];
 
-  return <IconComponent className={cn('className', className)} />;
+  return <IconComponent className={cn('className', className)} color={color} />;
 };

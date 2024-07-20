@@ -18,5 +18,8 @@ export const useSearch = () => {
   const handleSearch = (e:ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value)
   } 
-  return {isSuccess, handleSearch, data, searchTerm}
+  const handleClearSearch = () => {
+    setSearchTerm('')
+  } 
+  return {isSuccess, handleSearch,handleClearSearch, data, searchTerm}
 };

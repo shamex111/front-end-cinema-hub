@@ -6,9 +6,9 @@ import SearchField from '@/components/ui/search-field/SearchField'
 import { useSearch } from './useSearch'
 import SearchList from './search-list/SearchList'
 const Search: FC = () => {
-  const {handleSearch, isSuccess, searchTerm, data} = useSearch()
+  const {handleSearch, isSuccess, searchTerm, data,handleClearSearch} = useSearch()
   return <div className={styles.search}>
-    <SearchField handlerSearch={handleSearch} searchTerm={searchTerm}/>
+    <SearchField handlerSearch={handleSearch} handleClearSearch={handleClearSearch} searchTerm={searchTerm}/>
     {isSuccess && <SearchList movies={data || []}/>}
   </div>
 }

@@ -7,6 +7,7 @@ export const API_URL = {
   users: (url = '') => API_URL.root(`/users/${url}`),
   movies: (url = '') => API_URL.root(`/movies/${url}`),
   genres: (url = '') => API_URL.root(`/genres/${url}`),
+  findUsers: (name = '') => API_URL.users(`profile/${name ? name : ''}`),
   actors: (url = '') => API_URL.root(`/actors/${url}`),
   reviews: (url = '') => API_URL.root(`/reviews/${url}`),
   statistics: (url = '') => API_URL.root(`/statistics/${url}`),

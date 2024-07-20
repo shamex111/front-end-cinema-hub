@@ -15,8 +15,8 @@ export const PUBLIC_URL = {
 };
 
 export const DASHBOARD_URL = {
-  root: (url = '') => `/dashboard${url ? url : ''}`,
-
+  root: (url = '') => `/dashboard/${url ? url : ''}`,
+  findUsers: (name = '') => `/dashboard/${name ? name : ''}`,
   home: () => DASHBOARD_URL.root(),
   favorites: () => DASHBOARD_URL.root('/favorites')
 };

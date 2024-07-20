@@ -1,4 +1,4 @@
-import { IButton } from '../form-interface';
+import { IButton } from '../field/form-interface';
 import cn from 'clsx';
 import { FC } from 'react';
 
@@ -17,10 +17,10 @@ const Button: FC<IButton> = ({
         styles.button,
         className,
         size === 'sm' && 'rounded-lg px-4',
-        size === 'md' && 'text-sm rounded-md', 
+        size === 'md' && 'text-sm rounded-md',
         {
-            [styles.default] : variant === 'default',
-            [styles.outline] : variant === 'outline'
+          [styles.default]: variant === 'default',
+          [styles.outline]: variant === 'outline'
         }
       )}
       {...rest}

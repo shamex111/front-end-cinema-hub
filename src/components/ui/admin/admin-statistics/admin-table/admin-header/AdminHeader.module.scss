@@ -1,0 +1,6 @@
+.header {
+    @apply flex items-center justify-between mt-6;
+    .searchField{
+        @apply w-[300px] ;
+    }
+}

@@ -1,4 +1,5 @@
 import { IMovie } from "./movie.types"
+import { IReview } from "./review.types"
 
 export enum UserRole {
   USER = 'USER',
@@ -13,6 +14,12 @@ export interface IUser {
     role:UserRole
     isHasPremium:boolean
     favorites: IMovie[]
+    createdAt:any
+    reviews:IReview[] | null
 }
 
-export interface IUserEditInput extends Pick<IUser, 'name' | 'email' | 'role'> {}
+export interface IUserEditInput  {
+  name:string
+  role?:UserRole
+  avatarPath:string
+}

@@ -1,0 +1,49 @@
+.heading {
+  @apply ml-6;
+}
+.user_info {
+  @apply grid grid-cols-2 gap-7 my-5 px-6 w-2/3;
+  > .item {
+    @apply bg-gray-800 p-4 rounded-lg;
+    > .header {
+      @apply flex items-center justify-between space-y-0 pb-2 text-slate-200;
+
+      > .name {
+        @apply font-medium;
+      }
+      > .icon {
+        @apply size-[22px];
+      }
+    }
+  }
+}
+
+
+.heading{
+  @apply flex gap-3 items-center
+}
+.adminText {
+    background: -webkit-linear-gradient(0deg, #e343ed 29%, #ed6f6f 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+  @apply animate-pulse shadow-2xl w-fit rounded-md p-1;
+}
+
+.premiumText {
+    background: -webkit-linear-gradient(0deg, #db3232 29%, #ff0000 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  @apply animate-pulse shadow-2xl w-fit rounded-md p-1;
+}
+
+.button{
+  @apply p-2 px-4 my-2
+}
+
+.leftPart{
+  @apply flex flex-col 
+}
+.id{
+  @apply text-gray-600
+}
