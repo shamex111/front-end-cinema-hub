@@ -1,48 +1,41 @@
-'use client';
+import SkeletonLoader from '../SkeletonLoader';
+import { IUploadField } from '../form-elements/field/form-interface';
+import Image from 'next/image';
+import { FC } from 'react';
 
-import { FC, useState } from 'react';
+import styles from './FileUpload.module.scss';
+import { useUpload } from './useUpload';
 
-// Adjust the path based on your project structure
-import { axiosWithAuth } from '@/api/interceptors';
-
-import { API_URL } from '@/config/api.config';
-
-import { fileService } from '@/services/file.service';
-
-interface IFileUpload  {
-    setAvatarPath:any
-}
-
-const FileUpload: FC<IFileUpload> = ({setAvatarPath}) => {
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files.length > 0) {
-      setSelectedFile(e.target.files[0]);
-    }
-  };
-
-  const uploadFile = async () => {
-    if (!selectedFile) return;
-
-    try {
-      const folder = 'avatars'; 
-      const response = await fileService.upload(selectedFile, folder);
-
-      console.log('File uploaded successfully:', response.data);
-      setAvatarPath(response.data[0].name)
-    } catch (error) {
-      console.error('Error uploading file:', error);
-
-    }
-  };
+const FileUpload: FC<IUploadField> = ({
+  placeholder,
+  error,
+  style,
+  folder,
+  onChange,
+  isNoImage = false,
+  value
+}) => {
+  const { uploadImage, isLoading } = useUpload(onChange, folder);
 
   return (
-    <div>
-      <label>
-        <input type="file" onChange={handleFileChange} />
-      </label>
-      <button onClick={uploadFile}>Upload File</button>
+    <div className={styles.upload_field} style={style}>
+      <div className={styles.upload_flex}>
+        <label>
+          <span>{placeholder}</span>
+          <input type="file" onChange={uploadImage} />
+          {error && <div className={styles.error}>{error.message}</div>}
+        </label>
+
+        {!isNoImage && (
+          <div className={styles.upload_image_container}>
+            {isLoading ? (
+              <SkeletonLoader className="w-full h-full" />
+            ) : (
+              value && <Image src={value} alt="" fill unoptimized />
+            )}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

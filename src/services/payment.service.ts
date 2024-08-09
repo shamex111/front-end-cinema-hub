@@ -2,7 +2,7 @@ import { axiosWithAuth } from '@/api/interceptors';
 
 import { API_URL } from '@/config/api.config';
 
-import { IPayment } from '@/types/payment.types';
+import { IPayment, IPaymentResponse } from '@/types/payment.types';
 
 class PaymentService {
   async getAll() {
@@ -11,7 +11,7 @@ class PaymentService {
   }
 
   async checkout(amount: number) {
-    return axiosWithAuth.post<string>(API_URL.payments(''), {
+    return axiosWithAuth.post<IPaymentResponse>(API_URL.payments(''), {
       amount
     });
   }

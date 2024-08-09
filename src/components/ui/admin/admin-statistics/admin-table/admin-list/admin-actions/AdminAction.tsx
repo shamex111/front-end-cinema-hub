@@ -60,6 +60,9 @@ const AdminAction: FC<IAdminAction> = ({ editUrl, viewUrl, removeHandler, name }
             <Icon className={styles.icon} name="LuPencil" />
           </button>
         )}
+        {
+        removeHandler && (
+          <>
         <button  onClick={showModal}>
           <Icon className={styles.icon} name="LuTrash" />
         </button>
@@ -72,8 +75,10 @@ const AdminAction: FC<IAdminAction> = ({ editUrl, viewUrl, removeHandler, name }
           cancelText="Отмена"
           
         >
-          <p>Вы уверены, что хотите удалить пользователя <span>{`${name}`}</span>?</p>
+          <p>Вы уверены, что хотите удалить <span>{`${name}`}</span>?</p>
         </Modal>
+        </>
+        )}
       </div>
     </ConfigProvider>
   );

@@ -3,7 +3,7 @@ import { FC } from 'react';
 import * as Icons from 'react-icons/lu';
 
 export type TypeIconName = keyof typeof Icons;
-interface IIcon {
+export interface IIcon {
   name: TypeIconName;
   className?: string;
   color?: string;

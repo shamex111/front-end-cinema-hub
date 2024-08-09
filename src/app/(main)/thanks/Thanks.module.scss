@@ -1,0 +1,7 @@
+.wrapper {
+  @apply h-[95vh] flex items-center w-full justify-center;
+
+  > .area {
+    @apply flex-col flex items-center justify-center gap-y-4;
+  }
+}

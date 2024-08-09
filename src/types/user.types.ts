@@ -19,7 +19,8 @@ export interface IUser {
 }
 
 export interface IUserEditInput  {
-  name:string
+  name?:string
   role?:UserRole
-  avatarPath:string
+  avatarPath?:string,
+  isHasPremium?:boolean | string
 }

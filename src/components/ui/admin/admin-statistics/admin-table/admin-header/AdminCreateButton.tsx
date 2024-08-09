@@ -7,7 +7,7 @@ interface IAdminCreateButton {
 }
 
 const AdminCreateButton: FC<IAdminCreateButton> = ({onClick}) => {
-  return <Button onClick={onClick}>
+  return <Button onClick={onClick} className='px-4'>
     <Icon name='LuPlus' className='size-4 mr-2'/>
     Создать
   </Button>

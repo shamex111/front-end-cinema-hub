@@ -38,7 +38,7 @@ const Subscribe: FC = () => {
           : 'С премиум-подпиской у вас неограниченный доступ ко всем фильмам'}
       </p>
       <Link
-        href={user?.isHasPremium ? PUBLIC_URL.explorer() : PUBLIC_URL.premium()}
+        href={user?.isHasPremium ? PUBLIC_URL.trending() : PUBLIC_URL.premium()}
       >
         <Button size="sm" className={styles.button}>
           {user?.isHasPremium ? 'Смотреть фильмы' : 'Оформить подписку'}

@@ -15,10 +15,11 @@ export interface IMovie {
     reviews: IReview[]
     views:number
     videoUrl:string
-    slug:string
+    slug:string,
+    
 }
 
-export interface IMovieEditInput extends Omit<IMovie, 'id'| 'genres' |  'actors' | 'reviews'> {
+export interface IMovieEditInput extends Omit<IMovie, 'id'| 'views' | 'genres' |  'actors' | 'reviews'> {
     genres: string[]
     actors: string[]
 }

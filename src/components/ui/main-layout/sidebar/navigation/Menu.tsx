@@ -10,7 +10,7 @@ const Menu: FC<{ menu: IMenu }> = ({ menu: { items, title } }) => {
       <div className={styles.heading}>{title}</div>
       <div className={styles.items}>
         {items.length ? (
-          items.map(item => <MenuItem key={item.link} item={item} />)
+          items.map(item => <MenuItem key={item.value} item={item} />)
         ) : (
           <div>Элементы не найдены</div>
         )}

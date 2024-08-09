@@ -23,18 +23,21 @@ export const useAdminUsers = () => {
     select: data =>
       data.map(
         (user): IListItem => ({
+          withAvatar:true,
           id: user.id,
+          name: 'Пользователя ' + user.name,
           editUrl: ADMIN_URL.usersEdit(user.id),
           items: [
+            user.avatarPath,
             user.name,
             user.email,
-            user.role === UserRole.USER ? 'Пользователь' : 'Админ'
+            user.role === UserRole.USER ? 'Пользователь' : 'Админ',
+            user.isHasPremium ? 'true' : 'false',
           ],
           viewUrl: DASHBOARD_URL.findUsers(user.name)
         })
       )
   });
-
   const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
   };

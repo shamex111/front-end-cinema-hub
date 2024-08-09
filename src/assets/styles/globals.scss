@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import './react-select.scss';
+
 html,
 body {
   @apply bg-gray-900 text-white;
@@ -11,13 +13,34 @@ body {
 /*Custom scrollbar*/
 
 ::-webkit-scrollbar {
-  width:8px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background:transparent;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-gray-500 rounded-full
+  @apply bg-gray-500 rounded-full;
+}
+
+.slide-animation-enter {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+.slide-animation-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 300ms transform 300ms;
+}
+
+.slide-animation-exit {
+  opacity: 1;
+}
+.slide-animation-exit-active {
+  opacity: 0;
+  transform: scale(0.9);
+
+  transition: opacity 300ms transform 300ms;
 }

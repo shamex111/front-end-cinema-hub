@@ -1,18 +1,18 @@
 import { Icon } from '../../Icon';
 import SkeletonLoader from '../../SkeletonLoader';
 import FileUpload from '../../fileUpload/FileUpload';
+import Field from '../../form-elements/field/Field';
 import Heading from '../../heading/Heading';
-import { Button, ConfigProvider, Modal } from 'antd';
+import {  ConfigProvider, Modal } from 'antd';
 import { FC, useState } from 'react';
+import { Controller, useForm } from 'react-hook-form';
 
-// Поправлен импорт
-import Loading from '@/app/loading';
-
-import { IUser } from '@/types/user.types';
+import { IUser, IUserEditInput } from '@/types/user.types';
 
 import { useProfileChange } from './useProfileChange';
 
 import styles from '../Profile.module.scss';
+import Button from '../../form-elements/button/Button';
 
 interface IProfileChange {
   IsShort: boolean;
@@ -21,34 +21,32 @@ interface IProfileChange {
 
 const ProfileChange: FC<IProfileChange> = ({ IsShort, user }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [avatarPath, setAvatarPath] = useState<string | null>(null); // Уточнение типа для avatarPath
-  const [name, setName] = useState<string>(''); // Уточнение типа для name
 
-  const { mutate } = useProfileChange(user); // Исправлен вызов хука useProfileChange
+  const { onSubmit } = useProfileChange(user);
 
   const showModal = () => {
     setIsModalOpen(true);
   };
 
-  const handleOk = () => {
-    if (user) {
-      const data = {
-        name: name || user?.name,
-        avatarPath: `/uploads/avatars/${avatarPath}` || user?.avatarPath
-      };
-      mutate(data);
-      setIsModalOpen(false);
-      window.location.reload();
+  const {
+    handleSubmit,
+    register,
+    control,
+    formState: { errors }
+  } = useForm<IUserEditInput>({
+    mode: 'onChange',
+    values: {
+      name: user?.name,
+      avatarPath: user?.avatarPath 
     }
-  };
+  });
+
+ 
 
   const handleCancel = () => {
     setIsModalOpen(false);
   };
 
-  const handlerChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value);
-  };
 
   const theme = {
     token: {
@@ -62,8 +60,6 @@ const ProfileChange: FC<IProfileChange> = ({ IsShort, user }) => {
       boxShadowSecondary: 'none'
     }
   };
-
-  console.log(name, avatarPath);
 
   return (
     <ConfigProvider theme={theme}>
@@ -82,19 +78,43 @@ const ProfileChange: FC<IProfileChange> = ({ IsShort, user }) => {
       </Heading>
       <Modal
         title="Изменение профиля"
-        open={isModalOpen} // Исправлено свойство на visible
-        onOk={handleOk}
+        open={isModalOpen}
+        onOk={handleCancel}
         onCancel={handleCancel}
         okText="Применить"
         cancelText="Отмена"
       >
-        <FileUpload setAvatarPath={setAvatarPath} />
-        <input
-          type="text"
-          value={name}
-          className="text-black"
-          onChange={handlerChangeName}
-        />
+        <form onSubmit={handleSubmit(onSubmit)}>
+        <div className='border-b-[1px] border-gray-700 mb-4'>
+          <Controller
+            name="avatarPath"
+            control={control}
+            defaultValue=""
+            render={({ field: { value, onChange }, fieldState: { error } }) => (
+              <FileUpload
+                onChange={onChange}
+                value={value}
+                error={error}
+                folder="avatars"
+                placeholder="Аватарка"
+                style={{ marginTop: 15 }}
+              />
+            )}
+            rules={{
+              required: 'Аватарка обязательна!'
+            }}
+          />
+          <Field
+            {...register('name', {
+              required: 'Имя обязательно!'
+            })}
+            placeholder="Имя"
+            error={errors.name}
+            style={{ width: '31%',paddingLeft:0 }}
+          />
+          </div>
+          <Button className='px-4'>Сохранить</Button>
+        </form>
       </Modal>
     </ConfigProvider>
   );

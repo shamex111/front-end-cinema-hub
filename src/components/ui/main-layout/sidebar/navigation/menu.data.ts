@@ -12,7 +12,7 @@ export const userMenu: IMenu = {
     },
     {
       icon: 'LuClapperboard',
-      link: PUBLIC_URL.movie(),
+      link: PUBLIC_URL.trending(),
       value: 'Фильмы'
     },
     {

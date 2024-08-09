@@ -2,7 +2,7 @@ import { axiosClassic, axiosWithAuth } from '@/api/interceptors';
 
 import { API_URL } from '@/config/api.config';
 
-import { IUser, IUserEditInput } from '@/types/user.types';
+import { IUser, IAdminUserEditInput } from '@/types/user.types';
 
 class UserService {
   async getAll(searchTerm?: string) {
@@ -40,7 +40,7 @@ class UserService {
   }
   
   async toggleFavorite(movieId: string) {
-    return axiosWithAuth.post(API_URL.users('profile/favorites'), movieId);
+    return axiosWithAuth.post(API_URL.users('profile/favorites'), {movieId});
   }
   
   async getById(id: string) {
@@ -51,7 +51,7 @@ class UserService {
     return axiosClassic.get<IUser>(API_URL.findUsers(name))
   }
 
-  async update(id: string, data: IUserEditInput) {
+  async update(id: string, data: IAdminUserEditInput) {
     return axiosWithAuth.put<string>(API_URL.users(`${id}`), data);
   }
 

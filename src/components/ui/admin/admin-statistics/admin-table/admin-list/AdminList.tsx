@@ -17,11 +17,10 @@ const AdminList: FC<IAdminList> = ({listItems,headerItems, removeHandler, isLoad
     {isLoading ? (
       <div className={styles.loading}>
         {Array.from({length:5}).map((_,index) => (
-          <SkeletonLoader className='h-11'/>
+          <SkeletonLoader key={index} className='h-[47px]'/>
         )) }
       </div>
     ) : listItems.length ? (
-        
         listItems.map((item,index) => ( <AdminListItem key={index} listItem={item}  removeHandler={removeHandler ? () => removeHandler(item.id) : undefined}/>))
       
     )

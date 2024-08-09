@@ -9,8 +9,9 @@ export const PUBLIC_URL = {
   trending: () => PUBLIC_URL.root('/trending'),
 
   actor: (slug = '') => PUBLIC_URL.root(`/actor/${slug}`),
-  genre: (slug = '') => PUBLIC_URL.root(`/genre/${slug}`),
-  movie: (slug = '') => PUBLIC_URL.root(`/movie/${slug}`),
+  genre: (slug = '') => PUBLIC_URL.root(`/genres/${slug}`),
+  movie: (slug = '') => PUBLIC_URL.root(`/movies/${slug}`),
+  moviePage: (slug = '') => PUBLIC_URL.root(`/movie/${slug}`),
   premium: () => PUBLIC_URL.root('/premium')
 };
 
@@ -32,8 +33,8 @@ export const ADMIN_URL = {
   users: () => ADMIN_URL.root('/users'),
   usersEdit: (id = '') => ADMIN_URL.root(`/users/${id}`),
 
-  genre: () => ADMIN_URL.root('/genre'),
-  genreEdit: (id = '') => ADMIN_URL.root(`/genre/${id}`),
+  genre: () => ADMIN_URL.root('/genres'),
+  genresEdit: (id = '') => ADMIN_URL.root(`/genres/${id}`),
 
   actors: () => ADMIN_URL.root('/actors'),
   actorsEdit: (id = '') => ADMIN_URL.root(`/actors/${id}`),

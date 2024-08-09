@@ -25,9 +25,7 @@ class GenreService {
   }
 
   async update(id: string, data: IEditGenreInput) {
-    return await axiosWithAuth.put<string>(API_URL.genres(`${id}`), {
-      data
-    });
+    return await axiosWithAuth.put<string>(API_URL.genres(`${id}`), data);
   }
   async delete(id: string) {
     return axiosWithAuth.delete<string>(API_URL.genres(`${id}`));

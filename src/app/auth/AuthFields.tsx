@@ -55,6 +55,10 @@ const AuthFields: FC<IAuthFields> = ({ register, errors, isLoginForm }) => {
               minLength: {
                 value: 1,
                 message: 'Пожалуйста введите имя'
+              },
+              maxLength: {
+                value: 18,
+                message: 'Пароль должен содержать не более 18 символов'
               }
             })}
             placeholder="Имя"

@@ -36,7 +36,7 @@ export default function Users() {
       <AdminList
         listItems={users || []}
         isLoading={isLoading}
-        headerItems={['Имя', 'Почта', 'Роль']}
+        headerItems={['Аватарка','Имя', 'Почта', 'Роль', "Премиум"]}
         removeHandler={deleteAsync}
       />
     </div>

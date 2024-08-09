@@ -15,12 +15,12 @@ class MovieService {
   }
   async getMostPopular() {
     const { data: movies } = await axiosClassic.get<IMovie[]>(
-      API_URL.movies('/most-popular')
+      API_URL.movies('most-popular')
     );
     return movies;
   }
   async getById(id: string) {
-    return axiosClassic.get<IMovie>(API_URL.movies(`by-id/${id}`));
+    return axiosWithAuth.get<IMovie>(API_URL.movies(`by-id/${id}`));
   }
 
   async getBySlug(slug: string) {
@@ -40,7 +40,7 @@ class MovieService {
   }
 
   async updateCountViews(slug: string) {
-    return axiosClassic.put<string>(API_URL.movies('update-count-views'));
+    return axiosClassic.put<string>(API_URL.movies('update-count-views'),{slug});
   }
 
   async create() {
